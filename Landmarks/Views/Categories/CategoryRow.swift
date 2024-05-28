@@ -22,7 +22,11 @@ struct CategoryRow: View {
                 HStack(alignment: .top, spacing: 0) {
                     ForEach(items){
                         landmark in
-                        CategoryItem(landmark: landmark)
+                        NavigationLink{
+                            LandmarkDetail(landmark: landmark)
+                        } label:{
+                            CategoryItem(landmark: landmark)
+                        }
                     }
                 }
             }
@@ -35,7 +39,7 @@ struct CategoryRow: View {
     let landmarks = ModelData().landmarks
     return
     CategoryRow(
-        categoryName: landmarks[1].category.rawValue, 
+        categoryName: landmarks[1].category.rawValue,
         items: Array(landmarks.prefix(4))
     )
 }
