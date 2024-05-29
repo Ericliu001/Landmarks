@@ -56,4 +56,5 @@ struct ProfileSummary: View {
 
 #Preview {
     ProfileSummary(profile: Profile.default)
+        .environment(ModelData())
 }
