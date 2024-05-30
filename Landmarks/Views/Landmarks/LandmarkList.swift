@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct LandmarkList: View {
-    @Environment(ModelData.self) var modelData
+    @State var landmarks: [Landmark]
     @State private var showFavoritesOnly = false
     
     var filteredLandmarks: [Landmark] {
-        modelData.landmarks.filter { landmark in
+        landmarks.filter { landmark in
             (!showFavoritesOnly || landmark.isFavorite)
         }
     }
@@ -24,9 +24,11 @@ struct LandmarkList: View {
                     Text("Favorites only")
                 }
                 
-                ForEach(filteredLandmarks) { landmark in
+                ForEach(Array(filteredLandmarks.enumerated()), id: \.element.id) { index, landmark in
                     NavigationLink {
-                        LandmarkDetail(landmark: landmark)
+                        // Make sure the parent view uses @State to hold the landmarks array and passes a binding to LandmarkDetail: $landmarks
+                        LandmarkDetail( index: index,
+                            landmarks: $landmarks)
                     } label: {
                         LandmarkRow(landmark: landmark)
                     }
@@ -42,5 +44,5 @@ struct LandmarkList: View {
 }
 
 #Preview {
-    LandmarkList().environment(ModelData())
+    LandmarkList(landmarks: ModelData().landmarks)
 }
