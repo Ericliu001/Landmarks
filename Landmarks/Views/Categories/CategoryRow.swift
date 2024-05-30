@@ -23,7 +23,7 @@ struct CategoryRow: View {
                     ForEach(items){
                         landmark in
                         NavigationLink{
-                            LandmarkDetail(landmark: landmark)
+                            LandmarkDetail( landmark: landmark)
                         } label:{
                             CategoryItem(landmark: landmark)
                         }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CategoryHome: View {
-    @Environment(ModelData.self) var modelData
+    @State var modelData: ModelData
     @State private var showingProfile = false
     
     var body: some View {
@@ -37,8 +37,8 @@ struct CategoryHome: View {
                 }
             }
             .sheet(isPresented: $showingProfile) {
-                ProfileHost()
-                    .environment(modelData)
+                ProfileHost(profile: modelData.profile,
+                            hikes: modelData.hikes)
             }
             
         } detail: {
@@ -48,6 +48,5 @@ struct CategoryHome: View {
 }
 
 #Preview {
-    CategoryHome()
-        .environment(ModelData())
+    CategoryHome(modelData: ModelData())
 }
