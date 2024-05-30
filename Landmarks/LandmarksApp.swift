@@ -13,7 +13,7 @@ struct LandmarksApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView(modelData: modelData)
+            ContentView(modelData: $modelData)
         }
     }
 }

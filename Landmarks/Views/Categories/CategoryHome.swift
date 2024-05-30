@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CategoryHome: View {
-    @State var modelData: ModelData
+    @Binding var modelData: ModelData
     @State private var showingProfile = false
     
     var body: some View {
@@ -23,7 +23,9 @@ struct CategoryHome: View {
                 
                 ForEach(modelData.categories.keys.sorted(),  id: \.self) {
                     key in
-                    CategoryRow(categoryName: key, items: modelData.categories[key]!)
+                    CategoryRow(categoryName: key,
+                                items: modelData.categories[key]!,
+                                landmarks:  $modelData.landmarks)
                 }
                 .listRowInsets(EdgeInsets())
             }
@@ -48,5 +50,5 @@ struct CategoryHome: View {
 }
 
 #Preview {
-    CategoryHome(modelData: ModelData())
+    CategoryHome(modelData: .constant( ModelData()))
 }

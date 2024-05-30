@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct CategoryRow: View {
-    var categoryName: String
-    @State var items: [Landmark]
+    let categoryName: String
+    var items: [Landmark]
+    @Binding var landmarks: [Landmark]
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -20,9 +21,11 @@ struct CategoryRow: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: 0) {
-                    ForEach(Array(items.enumerated()), id: \.element.id){  index, landmark in
+                    ForEach(items){ landmark in
                         NavigationLink{
-                            LandmarkDetail( index: index, landmarks: $items)
+                            if let index = landmarks.firstIndex(where: {$0.id == landmark.id}){
+                                LandmarkDetail( index: index, landmarks: $landmarks)
+                            }
                         } label:{
                             CategoryItem(landmark: landmark)
                         }
@@ -39,6 +42,7 @@ struct CategoryRow: View {
     return
     CategoryRow(
         categoryName: landmarks[1].category.rawValue,
-        items: Array(landmarks.prefix(4))
+        items:  Array(landmarks.prefix(4)),
+        landmarks: .constant(landmarks)
     )
 }
