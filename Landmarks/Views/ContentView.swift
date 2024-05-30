@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var selection: Tab = .featured
-    @State var modelData: ModelData
+    @Binding var modelData: ModelData
     
     enum Tab {
         case featured
@@ -18,13 +18,13 @@ struct ContentView: View {
     
     var body: some View {
         TabView(selection: $selection) {
-            CategoryHome(modelData: modelData)
+            CategoryHome(modelData: $modelData)
                 .tabItem {
                     Label("Featured", systemImage: "star")
                 }
                 .tag(Tab.featured)
             
-            LandmarkList(landmarks: modelData.landmarks)
+            LandmarkList(landmarks: $modelData.landmarks)
                 .tabItem {
                     Label("List", systemImage: "list.dash")
                 }
@@ -34,6 +34,6 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView(modelData: ModelData())
+    ContentView(modelData: .constant( ModelData()))
 }
 

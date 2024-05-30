@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CategoryItem: View {
-    var landmark: Landmark
+    let landmark: Landmark
     
     var body: some View {
         VStack{

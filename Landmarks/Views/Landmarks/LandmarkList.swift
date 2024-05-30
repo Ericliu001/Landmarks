@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LandmarkList: View {
-    @State var landmarks: [Landmark]
+    @Binding var landmarks: [Landmark]
     @State private var showFavoritesOnly = false
     
     var filteredLandmarks: [Landmark] {
@@ -44,5 +44,5 @@ struct LandmarkList: View {
 }
 
 #Preview {
-    LandmarkList(landmarks: ModelData().landmarks)
+    LandmarkList(landmarks: .constant(ModelData().landmarks))
 }
