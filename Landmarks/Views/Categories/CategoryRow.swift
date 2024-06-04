@@ -9,8 +9,8 @@ import SwiftUI
 
 struct CategoryRow: View {
     let categoryName: String
-    var items: [Landmark]
-    @Binding var landmarks: [Landmark]
+    var items: [LandmarkDTO]
+    @Binding var landmarks: [LandmarkDTO]
     
     var body: some View {
         VStack(alignment: .leading) {

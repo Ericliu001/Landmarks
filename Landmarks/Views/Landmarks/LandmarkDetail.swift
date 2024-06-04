@@ -13,7 +13,7 @@ struct LandmarkDetail: View {
     /*
      In your LandmarkDetail view, you're using @State to store a local copy of the landmarks array, which means any changes made to the landmarks array within this view won't be reflected outside of it. To ensure changes are propagated correctly, you should pass the array from a parent view using @Binding instead of @State.
      */
-    @Binding var landmarks: [Landmark]
+    @Binding var landmarks: [LandmarkDTO]
     
     
     var body: some View {

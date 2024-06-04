@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct LandmarkList: View {
-    @Binding var landmarks: [Landmark]
+    @Binding var landmarks: [LandmarkDTO]
     @State private var showFavoritesOnly = false
     
-    var filteredLandmarks: [Landmark] {
+    var filteredLandmarks: [LandmarkDTO] {
         landmarks.filter { landmark in
             (!showFavoritesOnly || landmark.isFavorite)
         }
