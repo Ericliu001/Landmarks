@@ -13,13 +13,8 @@ class ModelData{
     var hikes: [Hike] = load("hikeData.json")
     var profile = Profile.default
 
-    var features: [LandmarkDTO] {
-        landmarks.filter{ $0.isFeatured }
-    }
     
-    var categories: [String: [LandmarkDTO]] {
-        Dictionary(grouping: landmarks, by: {$0.category.rawValue})
-    }
+
 }
 
 

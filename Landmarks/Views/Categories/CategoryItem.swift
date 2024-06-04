@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CategoryItem: View {
-    let landmark: LandmarkDTO
+    let landmark: Landmark
     
     var body: some View {
         VStack{
@@ -26,5 +26,5 @@ struct CategoryItem: View {
 }
 
 #Preview {
-    CategoryItem(landmark: ModelData().landmarks[0])
+    CategoryItem(landmark: Landmark.preview)
 }

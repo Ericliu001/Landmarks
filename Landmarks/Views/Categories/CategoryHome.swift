@@ -6,26 +6,30 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct CategoryHome: View {
-    @Binding var modelData: ModelData
+    @Query(filter: #Predicate<Landmark> {
+        $0.isFavorite == true
+    })
+    var features: [Landmark]
+    var landmarks: [Landmark]
     @State private var showingProfile = false
     
     var body: some View {
         NavigationSplitView {
             List {
-                modelData.features[0].image
+                landmarks[0].image
                     .resizable()
                     .scaledToFill()
                     .frame(height: 200)
                     .clipped()
                     .listRowInsets(EdgeInsets())
                 
-                ForEach(modelData.categories.keys.sorted(),  id: \.self) {
+                ForEach(landmarks.categories.keys.sorted(),  id: \.self) {
                     key in
                     CategoryRow(categoryName: key,
-                                items: modelData.categories[key]!,
-                                landmarks:  $modelData.landmarks)
+                                items: landmarks)
                 }
                 .listRowInsets(EdgeInsets())
             }
@@ -38,17 +42,18 @@ struct CategoryHome: View {
                     Label("User Profile", systemImage: "person.crop.circle")
                 }
             }
-            .sheet(isPresented: $showingProfile) {
-                ProfileHost(profile: modelData.profile,
-                            hikes: modelData.hikes)
-            }
-            
+            // TODO:  fix hike
+            //            .sheet(isPresented: $showingProfile) {
+            //                ProfileHost(profile: Profile.default, // TODO: get real data here.
+            //                            hikes: modelData.hikes)
+            //            }
+            //
         } detail: {
             Text("Select a Landmark")
         }
     }
 }
 
-#Preview {
-    CategoryHome(modelData: .constant( ModelData()))
-}
+//#Preview {
+//    CategoryHome(modelData: .constant( ModelData()))
+//}

@@ -7,6 +7,8 @@
 
 import Foundation
 import SwiftData
+import SwiftUI
+import CoreLocation
 
 @Model
 final class Landmark {
@@ -32,5 +34,28 @@ final class Landmark {
         self.imageName = imageName
         self.coordinates = coordinates
         self.isFavorite = isFavorite
+    }
+}
+
+
+extension Landmark {
+    @Transient
+    var locationCoordinate: CLLocationCoordinate2D{
+        CLLocationCoordinate2D(latitude: coordinates.latitude, longitude: coordinates.longitude)
+    }
+    
+    @Transient
+    var image: Image {
+        Image(imageName)
+    }
+    
+    static var preview: Landmark =
+        Landmark(id: 0, name: "Cool Park", park: "Yosemite", state: "CA", detail: "This is my favorite park, and I go every Summer.", isFeatured: true, category: .lakes, imageName: "turtlerock", coordinates: Coordinates(latitude: 0, longitude: 0))
+    
+}
+
+extension [Landmark] {
+    var categories: [String: [Landmark]] {
+        Dictionary(grouping: self, by: {$0.category.rawValue})
     }
 }

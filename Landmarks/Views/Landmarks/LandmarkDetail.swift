@@ -8,16 +8,11 @@
 import SwiftUI
 
 struct LandmarkDetail: View {
-    let index: Int
-    
-    /*
-     In your LandmarkDetail view, you're using @State to store a local copy of the landmarks array, which means any changes made to the landmarks array within this view won't be reflected outside of it. To ensure changes are propagated correctly, you should pass the array from a parent view using @Binding instead of @State.
-     */
-    @Binding var landmarks: [LandmarkDTO]
+    var landmark: Landmark
     
     
     var body: some View {
-        let landmark = landmarks[index]
+        @Bindable var landmark = landmark
         
         ScrollView {
             MapView(coordinates: landmark.locationCoordinate)
@@ -35,7 +30,7 @@ struct LandmarkDetail: View {
                         .font(.title)
                         .foregroundColor(.primary)
                     
-                    FavoriteButton(isSet: $landmarks[index].isFavorite)
+                    FavoriteButton(isSet: $landmark.isFavorite)
                 }
                 
                 HStack {
@@ -52,7 +47,7 @@ struct LandmarkDetail: View {
                 Text("About \(landmark.name)")
                     .font(.title2)
                 
-                Text(landmark.description)
+                Text(landmark.detail)
                 
             }
             .padding()
@@ -63,6 +58,5 @@ struct LandmarkDetail: View {
 }
 
 #Preview {
-    var landmarks = ModelData().landmarks
-    return LandmarkDetail(index: 0, landmarks: .constant( landmarks)) // Use the .constant modifier to create a constant binding for the landmarks array.
+    return LandmarkDetail(landmark: Landmark.preview)
 }

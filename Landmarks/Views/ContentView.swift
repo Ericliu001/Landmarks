@@ -10,8 +10,6 @@ import SwiftData
 
 struct ContentView: View {
     @State private var selection: Tab = .featured
-    @Binding var modelData: ModelData
-    
     @Environment(\.modelContext) private var modelContext
     @Query var landmarks: [Landmark] = []
     
@@ -35,13 +33,13 @@ struct ContentView: View {
     
     var body: some View {
         TabView(selection: $selection) {
-            CategoryHome(modelData: $modelData)
+            CategoryHome(landmarks: landmarks)
                 .tabItem {
                     Label("Featured", systemImage: "star")
                 }
                 .tag(Tab.featured)
             
-            LandmarkList(landmarks: $modelData.landmarks)
+            LandmarkList(landmarks: landmarks)
                 .tabItem {
                     Label("List", systemImage: "list.dash")
                 }
@@ -52,7 +50,7 @@ struct ContentView: View {
     }
 }
 
-#Preview {
-    ContentView(modelData: .constant( ModelData()))
-}
+//#Preview {
+//    ContentView(modelData: .constant( ModelData()))
+//}
 

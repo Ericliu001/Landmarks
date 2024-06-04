@@ -9,8 +9,8 @@ import SwiftUI
 
 struct CategoryRow: View {
     let categoryName: String
-    var items: [LandmarkDTO]
-    @Binding var landmarks: [LandmarkDTO]
+    // TODO: query here
+    var items: [Landmark]
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -23,9 +23,7 @@ struct CategoryRow: View {
                 HStack(alignment: .top, spacing: 0) {
                     ForEach(items){ landmark in
                         NavigationLink{
-                            if let index = landmarks.firstIndex(where: {$0.id == landmark.id}){
-                                LandmarkDetail( index: index, landmarks: $landmarks)
-                            }
+                                LandmarkDetail( landmark: landmark)
                         } label:{
                             CategoryItem(landmark: landmark)
                         }
@@ -37,12 +35,12 @@ struct CategoryRow: View {
     }
 }
 
-#Preview {
-    let landmarks = ModelData().landmarks
-    return
-    CategoryRow(
-        categoryName: landmarks[1].category.rawValue,
-        items:  Array(landmarks.prefix(4)),
-        landmarks: .constant(landmarks)
-    )
-}
+//#Preview {
+//    let landmarks = ModelData().landmarks
+//    return
+//    CategoryRow(
+//        categoryName: landmarks[1].category.rawValue,
+//        items:  Array(landmarks.prefix(4)),
+//        landmarks: .constant(landmarks)
+//    )
+//}

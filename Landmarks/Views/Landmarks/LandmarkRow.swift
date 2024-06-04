@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LandmarkRow: View {
-    let landmark: LandmarkDTO
+    let landmark: Landmark
     
     var body: some View {
         HStack {
@@ -31,8 +31,8 @@ struct LandmarkRow: View {
 #Preview("Turtle Rock") {
     let landmarks = ModelData().landmarks
     return Group{
-        LandmarkRow(landmark: landmarks[0])
-        LandmarkRow(landmark: landmarks[1])
+        LandmarkRow(landmark: Landmark.preview)
+        LandmarkRow(landmark: Landmark.preview)
     }
     
 }
