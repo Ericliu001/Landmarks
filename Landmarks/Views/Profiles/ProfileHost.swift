@@ -6,15 +6,18 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ProfileHost: View {
     @Environment(\.editMode) var editMode
-    @State var profile: Profile
+    @Query var profiles: [Profile]
     @State private var draftProfile = Profile.default
-    var hikes: [Hike]
+    let hikes: [Hike] = ModelData().hikes
     
     var body: some View {
+        var profile = profiles[0]
         VStack(alignment: .leading, spacing: 20){
+            
             HStack {
                 if editMode?.wrappedValue == .active {
                     Button("Cancel", role: .cancel){
@@ -38,6 +41,7 @@ struct ProfileHost: View {
                     }
                     .onDisappear{
                         profile = draftProfile
+                        
                     }
             }
         }
@@ -46,8 +50,7 @@ struct ProfileHost: View {
 }
 
 #Preview {
-    let modelData = ModelData()
-    return ProfileHost(
-                profile: modelData.profile,
-                hikes: modelData.hikes)
+    ModelContainerPreview(PreviewSampleData.inMemoryContainer){
+        ProfileHost()
+    }
 }

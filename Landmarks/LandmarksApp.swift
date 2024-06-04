@@ -15,7 +15,7 @@ struct LandmarksApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: [Landmark.self])
+        .modelContainer(for: [Landmark.self, Profile.self])
     }
     
 }

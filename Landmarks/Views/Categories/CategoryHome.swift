@@ -42,11 +42,10 @@ struct CategoryHome: View {
                 }
             }
             // TODO:  fix hike
-            //            .sheet(isPresented: $showingProfile) {
-            //                ProfileHost(profile: Profile.default, // TODO: get real data here.
-            //                            hikes: modelData.hikes)
-            //            }
-            //
+            .sheet(isPresented: $showingProfile) {
+                ProfileHost()
+            }
+            
         } detail: {
             Text("Select a Landmark")
         }

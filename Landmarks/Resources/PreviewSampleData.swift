@@ -19,11 +19,11 @@ actor PreviewSampleData {
     }()
 
     static var inMemoryContainer: () throws -> ModelContainer = {
-        let schema = Schema([Landmark.self])
+        let schema = Schema([Landmark.self, Profile.self])
         let configuration = ModelConfiguration(isStoredInMemoryOnly: true)
         let container = try! ModelContainer(for: schema, configurations: [configuration])
         let sampleData: [any PersistentModel] = [
-            Landmark.preview
+            Landmark.preview, Profile.default
         ]
         Task { @MainActor in
             sampleData.forEach {

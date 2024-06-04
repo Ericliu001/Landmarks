@@ -12,6 +12,7 @@ struct ContentView: View {
     @State private var selection: Tab = .featured
     @Environment(\.modelContext) private var modelContext
     @Query var landmarks: [Landmark] = []
+    @Query var profiles: [Profile] = []
     
     
     func loadRawDataIfStorageEmpty() {
@@ -23,6 +24,10 @@ struct ContentView: View {
                 
                 modelContext.insert(landmark)
             }
+        }
+        
+        if profiles.isEmpty {
+            modelContext.insert(Profile.default)
         }
     }
     

@@ -31,7 +31,7 @@ struct ProfileEditor: View {
             })
             
             Picker("Season Photo", selection: $profile.seasonalPhoto){
-                ForEach(Profile.Season.allCases) { season in
+                ForEach(Season.allCases) { season in
                     Text(season.rawValue).tag(season)
                 }
             }
