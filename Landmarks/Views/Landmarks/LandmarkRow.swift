@@ -29,10 +29,11 @@ struct LandmarkRow: View {
 }
 
 #Preview("Turtle Rock") {
-    let landmarks = ModelData().landmarks
-    return Group{
-        LandmarkRow(landmark: Landmark.preview)
-        LandmarkRow(landmark: Landmark.preview)
+    ModelContainerPreview(PreviewSampleData.inMemoryContainer){
+        Group{
+            LandmarkRow(landmark: Landmark.preview)
+            LandmarkRow(landmark: Landmark.preview)
+        }
     }
     
 }

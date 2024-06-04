@@ -10,7 +10,7 @@ import SwiftData
 
 struct CategoryHome: View {
     @Query(filter: #Predicate<Landmark> {
-        $0.isFavorite == true
+        $0.isFeatured == true
     })
     var features: [Landmark]
     var landmarks: [Landmark]
@@ -19,7 +19,7 @@ struct CategoryHome: View {
     var body: some View {
         NavigationSplitView {
             List {
-                landmarks[0].image
+                features[0].image
                     .resizable()
                     .scaledToFill()
                     .frame(height: 200)
@@ -28,8 +28,7 @@ struct CategoryHome: View {
                 
                 ForEach(landmarks.categories.keys.sorted(),  id: \.self) {
                     key in
-                    CategoryRow(categoryName: key,
-                                items: landmarks)
+                    CategoryRow(categoryName: key, landmarks: landmarks)
                 }
                 .listRowInsets(EdgeInsets())
             }
@@ -54,6 +53,9 @@ struct CategoryHome: View {
     }
 }
 
-//#Preview {
-//    CategoryHome(modelData: .constant( ModelData()))
-//}
+#Preview {
+    
+    ModelContainerPreview(PreviewSampleData.inMemoryContainer){
+        CategoryHome(landmarks: PreviewSampleData.landmarks)
+    }
+}

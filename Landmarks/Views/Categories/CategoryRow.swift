@@ -6,11 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct CategoryRow: View {
     let categoryName: String
-    // TODO: query here
-    var items: [Landmark]
+    let landmarks: [Landmark]
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -21,9 +21,11 @@ struct CategoryRow: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: 0) {
+                    let items = filterLandmarksByCategory(categoryName: categoryName)
+                    
                     ForEach(items){ landmark in
                         NavigationLink{
-                                LandmarkDetail( landmark: landmark)
+                            LandmarkDetail(landmark: landmark)
                         } label:{
                             CategoryItem(landmark: landmark)
                         }
@@ -33,14 +35,17 @@ struct CategoryRow: View {
             .frame(height: 185)
         }
     }
+    
+    private func filterLandmarksByCategory(categoryName: String) -> [Landmark] {
+        return landmarks.filter { $0.category.rawValue == categoryName }
+    }
 }
 
-//#Preview {
-//    let landmarks = ModelData().landmarks
-//    return
-//    CategoryRow(
-//        categoryName: landmarks[1].category.rawValue,
-//        items:  Array(landmarks.prefix(4)),
-//        landmarks: .constant(landmarks)
-//    )
-//}
+#Preview {
+    return ModelContainerPreview(PreviewSampleData.inMemoryContainer){
+        CategoryRow(
+            categoryName: PreviewSampleData.landmarks[1].category.rawValue,
+            landmarks: PreviewSampleData.landmarks
+        )
+    }
+}

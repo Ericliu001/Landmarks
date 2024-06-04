@@ -44,5 +44,7 @@ struct LandmarkList: View {
 }
 
 #Preview {
-    LandmarkList(landmarks: [Landmark.preview])
+    ModelContainerPreview(PreviewSampleData.inMemoryContainer){
+        LandmarkList(landmarks: PreviewSampleData.landmarks)
+    }
 }

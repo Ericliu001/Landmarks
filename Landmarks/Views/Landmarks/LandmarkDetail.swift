@@ -58,5 +58,7 @@ struct LandmarkDetail: View {
 }
 
 #Preview {
-    return LandmarkDetail(landmark: Landmark.preview)
+    ModelContainerPreview(PreviewSampleData.inMemoryContainer){
+        LandmarkDetail(landmark: Landmark.preview)
+    }
 }

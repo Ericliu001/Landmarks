@@ -1,20 +1,23 @@
-//
-//  PreviewSampleData.swift
-//  Landmarks
-//
-//  Created by Eric Liu on 6/4/24.
-//
+/*
+See the LICENSE.txt file for this sample’s licensing information.
 
-import Foundation
-import SwiftUI
+Abstract:
+The preview sample data actor which provides an in-memory model container.
+*/
+
 import SwiftData
+import SwiftUI
 
+/**
+ Preview sample data.
+ */
 actor PreviewSampleData {
+
     @MainActor
     static var container: ModelContainer = {
         return try! inMemoryContainer()
     }()
-    
+
     static var inMemoryContainer: () throws -> ModelContainer = {
         let schema = Schema([Landmark.self])
         let configuration = ModelConfiguration(isStoredInMemoryOnly: true)
@@ -29,4 +32,11 @@ actor PreviewSampleData {
         }
         return container
     }
+    
+    static var landmarks = [
+        Landmark.preview,
+        Landmark.preview,
+        Landmark.preview,
+        Landmark.preview,
+    ]
 }

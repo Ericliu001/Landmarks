@@ -26,5 +26,8 @@ struct CategoryItem: View {
 }
 
 #Preview {
-    CategoryItem(landmark: Landmark.preview)
+    
+    ModelContainerPreview(PreviewSampleData.inMemoryContainer){
+        CategoryItem(landmark: Landmark.preview)
+    }
 }

@@ -14,7 +14,7 @@ struct ContentView: View {
     @Query var landmarks: [Landmark] = []
     
     
-    func initData() {
+    func loadRawDataIfStorageEmpty() {
         if landmarks.isEmpty {
             let modelData = ModelData()
             
@@ -45,12 +45,14 @@ struct ContentView: View {
                 }
                 .tag(Tab.list)
         }.onAppear(perform: {
-            initData()
+            loadRawDataIfStorageEmpty()
         })
     }
 }
 
-//#Preview {
-//    ContentView(modelData: .constant( ModelData()))
-//}
+#Preview {
+    ModelContainerPreview(PreviewSampleData.inMemoryContainer){
+        ContentView()
+    }
+}
 
