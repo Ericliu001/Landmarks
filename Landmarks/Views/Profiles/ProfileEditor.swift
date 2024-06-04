@@ -45,5 +45,7 @@ struct ProfileEditor: View {
 }
 
 #Preview {
-    ProfileEditor(profile: .constant(.default))
+    ModelContainerPreview(PreviewSampleData.inMemoryContainer){
+        ProfileEditor(profile: .constant(.default))
+    }
 }

@@ -23,7 +23,7 @@ actor PreviewSampleData {
         let configuration = ModelConfiguration(isStoredInMemoryOnly: true)
         let container = try! ModelContainer(for: schema, configurations: [configuration])
         let sampleData: [any PersistentModel] = [
-            Landmark.preview, Profile.default
+            Landmark.preview, Landmark.preview2, Profile.default
         ]
         Task { @MainActor in
             sampleData.forEach {
@@ -35,8 +35,8 @@ actor PreviewSampleData {
     
     static var landmarks = [
         Landmark.preview,
+        Landmark.preview2,
         Landmark.preview,
-        Landmark.preview,
-        Landmark.preview,
+        Landmark.preview2,
     ]
 }

@@ -55,6 +55,7 @@ struct ProfileSummary: View {
 }
 
 #Preview {
-    ProfileSummary(hikes: ModelData().hikes, profile: Profile.default
-    )
+    ModelContainerPreview(PreviewSampleData.inMemoryContainer){
+        ProfileSummary(hikes: ModelData().hikes, profile: Profile.default)
+    }
 }

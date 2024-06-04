@@ -15,7 +15,8 @@ struct ProfileHost: View {
     let hikes: [Hike] = ModelData().hikes
     
     var body: some View {
-        var profile = profiles[0]
+        var profile: Profile = profiles.isEmpty ? Profile.default : profiles[0]
+        
         VStack(alignment: .leading, spacing: 20){
             
             HStack {

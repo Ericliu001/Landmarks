@@ -32,7 +32,7 @@ struct LandmarkRow: View {
     ModelContainerPreview(PreviewSampleData.inMemoryContainer){
         Group{
             LandmarkRow(landmark: Landmark.preview)
-            LandmarkRow(landmark: Landmark.preview)
+            LandmarkRow(landmark: Landmark.preview2)
         }
     }
     

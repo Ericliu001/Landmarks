@@ -49,9 +49,9 @@ struct ContentView: View {
                     Label("List", systemImage: "list.dash")
                 }
                 .tag(Tab.list)
-        }.onAppear(perform: {
+        }.task {
             loadRawDataIfStorageEmpty()
-        })
+        }
     }
 }
 
